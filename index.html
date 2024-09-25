@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML-Speed tester</title>
+    <link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+    <header class="Header">
+        <h1 class="Title">HTML Speed tester</h1>
+        <div class="InputRow">
+            <input id="NumberInput" type="number">
+            <button onclick="LoadDivs()">Generate</button>
+            <button onclick="Clear()">Clear</button>
+            <p id="StopWatchDisplay"></p>
+        </div>
+        <div></div>
+    </header>
+    <div id="Container">
+    </div>
+    <footer class="Footer"><p>Sandbox Production Nicola & Igor © - 2024</p></footer>
+    <script>
+        const container = document.getElementById("Container");
+        const numberInput = document.getElementById("NumberInput");
+        const timeDisplay = document.getElementById("StopWatchDisplay");
+
+        function LoadDivs() {
+            let startTime = new Date();
+            let htmlContent = '';
+
+            for (let index = 1; index <= numberInput.value; index++) {
+                htmlContent += `<p class="TestContainer">
+                    [Test ${index}]
+                    </p>`;
+            }
+            
+            container.innerHTML = htmlContent;
+            timeDisplay.innerHTML = `Time: ${(new Date - startTime)}ms`;
+        }
+
+        function Clear(){
+            container.innerHTML = '';
+            timeDisplay.innerHTML = ''
+        }
+    </script>
+</body>
+</html>
