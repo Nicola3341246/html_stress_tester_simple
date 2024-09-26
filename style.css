@@ -42,6 +42,12 @@ p{
     background-color: rgb(236, 235, 235);
 }
 
+.TestContainer:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    filter: brightness(0.9);
+}
+
 .Footer{
     height: 3%;
     box-shadow: 0px 2px 60px rgba(0, 0, 0, 0.2)
