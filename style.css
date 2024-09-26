@@ -1,11 +1,20 @@
+:root{
+    --background-colour: #3f3f3f;
+    --field-background: #2e2e2e;
+    --box-shadow: #d6d6d6;
+    --text-colour: #fff;
+}
+
 body{
     font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--background-colour);
+    color: var(--text-colour);
     margin: 0;
     padding: 0;
     height: 100vh;
 }
 
-p{
+h3 {
     margin: 0;
 }
 
@@ -19,7 +28,7 @@ p{
     height: 3%;
     justify-content: space-between;
     
-    box-shadow: 0px 2px 60px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 60px var(--box-shadow);
 }
 
 .InputRow{
@@ -38,8 +47,8 @@ p{
     min-width: fit-content;
     text-align: center;
 
-    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
-    background-color: rgb(236, 235, 235);
+    box-shadow: 0px 0px 2px var(--box-shadow);
+    background-color: var(--field-background);
 }
 
 .TestContainer:hover{
@@ -50,12 +59,12 @@ p{
 
 .Footer{
     height: 3%;
-    box-shadow: 0px 2px 60px rgba(0, 0, 0, 0.2)
+    box-shadow: 0px 2px 60px var(--box-shadow);
 }
 
 #Container{
     font-family: Arial, Helvetica, sans-serif;
-    height: 94%;
+    height: 93%;
 
     display: flex;
     flex-direction: row;
