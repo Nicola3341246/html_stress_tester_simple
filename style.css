@@ -85,7 +85,8 @@ p{
     flex-wrap: wrap;
     justify-content: center;
     border: white 1vh solid;
-
+    align-items: flex-start;
+    align-content: flex-start;
     height: 80%;
     width: 90%;
     overflow-y: scroll;
@@ -97,7 +98,7 @@ p{
     width: 80px;
     min-width: fit-content;
     text-align: center;
-
+    
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
     background-color: rgb(236, 235, 235);
 }
