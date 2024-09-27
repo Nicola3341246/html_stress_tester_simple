@@ -18,5 +18,5 @@ const container = document.getElementById("Container");
 
         function Clear(){
             container.innerHTML = '';
-            timeDisplay.innerHTML = ''
+            timeDisplay.innerHTML = 'Time: XXXms'
         }
