@@ -9,19 +9,26 @@
 <body>
     <header class="Header">
         <h1 class="Title">HTML Speed tester</h1>
-        <div class="InputRow">
-            <input id="NumberInput" type="number">
-            <button onclick="LoadDivs()">Generate</button>
-            <button onclick="Clear()">Clear</button>
-            <p id="StopWatchDisplay"></p>
-        </div>
-        <div></div>
     </header>
     <div id="Container">
+        <div class="InteractionContainer">
+        <div class="InputRow">
+            <input id="NumberInput" type="number">
+            <button class="inputBtn" onclick="LoadDivs()">Generate</button>
+            <button class="inputBtn" onclick="Clear()">Clear</button>
+        </div>
+        <div class="StopWatchContainer">
+            <p id="StopWatchDisplay">Time: XXXms</p>
+        </div>
+        </div>
+
+        <div class="TestItemContainer" id="testItemContainer">
+            &nbsp;
+        </div>
     </div>
     <footer class="Footer"><p>Sandbox Production Nicola & Igor © - 2024</p></footer>
     <script>
-        const container = document.getElementById("Container");
+        const container = document.getElementById("testItemContainer");
         const numberInput = document.getElementById("NumberInput");
         const timeDisplay = document.getElementById("StopWatchDisplay");
 
@@ -41,7 +48,7 @@
 
         function Clear(){
             container.innerHTML = '';
-            timeDisplay.innerHTML = ''
+            timeDisplay.innerHTML = 'Time: XXXms'
         }
     </script>
 </body>
