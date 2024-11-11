@@ -3,6 +3,7 @@
     --background-container-colour: #272727;
     --field-background: #2e2e2e;
     --box-shadow: #d6d6d6;
+    --box-shadow-dark: #808080;
     --background-button-color: #4650db;
     --text-colour: #fff;
 }
@@ -45,14 +46,15 @@ p{
     width: 92%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
 }
 
 .NavContainer{
     width: 100%;
-    height: 3.5rem;
+    height: max-content;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 
@@ -65,7 +67,7 @@ p{
 
 .InputRow{
     background-color: var(--background-container-colour);
-    box-shadow: 0px 2px 10px var(--box-shadow);
+    box-shadow: 0px 2px 10px var(--box-shadow-dark);
     height: 100%;
     justify-content: space-around;
     width: 25rem;
@@ -73,7 +75,7 @@ p{
 
 .StopWatchContainer{
     background-color: var(--background-container-colour);
-    box-shadow: 0px 2px 10px var(--box-shadow);
+    box-shadow: 0px 2px 10px var(--box-shadow-dark);
     margin: 0 1rem;
     width: 9rem;
     display: flex;
@@ -108,16 +110,19 @@ p{
 
 .TestItemContainer{
     background-color: var(--background-container-colour);
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 10px var(--box-shadow-dark);
+    margin: 0;
+    margin-top: 2rem;
+    width: 100%;
+    height: 90%;
+    max-height: 65vh;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    border: var(--background-container-colour) 1vh solid;
+    border: var(--background-container-colour) 2% solid;
     align-items: flex-start;
     align-content: flex-start;
-    height: 80%;
-    width: 90%;
     overflow-y: scroll;
 }
 
@@ -128,7 +133,7 @@ p{
     min-width: fit-content;
     text-align: center;
     
-    box-shadow: 0px 2px 3px var(--box-shadow);
+    box-shadow: 0px 2px 3px var(--box-shadow-dark);
     background-color: var(--field-background);
 }
 
