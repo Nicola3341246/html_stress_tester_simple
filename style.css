@@ -1,3 +1,11 @@
+:root{
+    --background-colour: #3f3f3f;
+    --background-header-footer-colour: #272727;
+    --field-background: #2e2e2e;
+    --box-shadow: #d6d6d6;
+    --text-colour: #fff;
+}
+
 body{
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
