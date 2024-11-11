@@ -27,29 +27,6 @@
         </div>
     </div>
     <footer class="Footer"><p>Sandbox Production Nicola & Igor © - 2024</p></footer>
-    <script>
-        const container = document.getElementById("testItemContainer");
-        const numberInput = document.getElementById("NumberInput");
-        const timeDisplay = document.getElementById("StopWatchDisplay");
-
-        function LoadDivs() {
-            let startTime = new Date();
-            let htmlContent = '';
-
-            for (let index = 1; index <= numberInput.value; index++) {
-                htmlContent += `<p class="TestContainer">
-                    Test ${index}
-                    </p>`;
-            }
-            
-            container.innerHTML = htmlContent;
-            timeDisplay.innerHTML = `Time: ${(new Date - startTime)}ms`;
-        }
-
-        function Clear(){
-            container.innerHTML = '';
-            timeDisplay.innerHTML = 'Time: XXXms'
-        }
-    </script>
+      <script src="./app.js"></script>
 </body>
 </html>

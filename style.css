@@ -1,12 +1,25 @@
+:root{
+    --background-colour: #3f3f3f;
+    --background-header-footer-colour: #272727;
+    --field-background: #2e2e2e;
+    --box-shadow: #d6d6d6;
+    --text-colour: #fff;
+}
+
 body{
+    display: grid;
+    grid-template-rows: 3% 9% 1%;
+
     font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--background-colour);
+    color: var(--text-colour);
     margin: 0;
     padding: 0;
     height: 96vh;
     background-color: rgb(233, 233, 233);
 }
 
-p{
+h3 {
     margin: 0;
 }
 
@@ -98,13 +111,24 @@ p{
     overflow-y: scroll;
 }
 
+#Container{
+    font-family: Arial, Helvetica, sans-serif;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+
+    overflow-y: scroll;
+}
+
 .TestContainer{
     margin: 5px;
     padding: 5px;
     width: 80px;
     min-width: fit-content;
     text-align: center;
-    
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
     background-color: rgb(236, 235, 235);
 }
