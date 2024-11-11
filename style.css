@@ -15,7 +15,8 @@ body{
     color: var(--text-colour);
     margin: 0;
     padding: 0;
-    height: 100vh;
+    height: 96vh;
+    background-color: rgb(233, 233, 233);
 }
 
 h3 {
@@ -26,22 +27,88 @@ h3 {
     display: flex;
     flex-direction: row;
     align-content: center;
+    align-items: center;
 }
 
 .Header{
-    justify-content: space-between;
-    background-color: var(--background-header-footer-colour);
-    
-    box-shadow: 0px 2px 60px var(--box-shadow);
+    background-color: white;
+    height: 5vh;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+.VZIcon{
+    margin-left: 1%;
+    width: 2%;
+    height: auto;
+}
+
+.InteractionContainer{
+    display: flex;
+    height: 3%;
+    width: 20%;
+    margin-left: 2%;
+    margin-right: auto;
+    justify-content: space-evenly;
+}
+
+.StopWatchContainer{
+    background-color: white;
+    width: 20%;
+    height: 100%;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .InputRow{
-    height: fit-content;
+    padding: 1%;
+    background-color: white;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    height: 100%;
+    justify-content: space-between;
+    width: 65%;
+    padding: 2%;
+}
+
+.inputBtn{
+    display: flex;
+    align-items: center;
+    background-color: royalblue;
+    color: white;
+    border: none;
+    height: 80%;
+    padding: 3%;
+    text-align: center;
+}
+
+.inputBtn:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    filter: brightness(0.9);
 }
 
 .Title{
     margin: 0;
     padding: 0;
+    color: royalblue;
+    margin-left: 1%;
+}
+
+.TestItemContainer{
+    background-color: white;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: white 1vh solid;
+    align-items: flex-start;
+    align-content: flex-start;
+    height: 80%;
+    width: 90%;
+    overflow-y: scroll;
 }
 
 #Container{
@@ -62,9 +129,8 @@ h3 {
     width: 80px;
     min-width: fit-content;
     text-align: center;
-
-    box-shadow: 0px 0px 2px var(--box-shadow);
-    background-color: var(--field-background);
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+    background-color: rgb(236, 235, 235);
 }
 
 .TestContainer:hover{
@@ -74,7 +140,26 @@ h3 {
 }
 
 .Footer{
-    height: max-content;
-    background-color: var(--background-header-footer-colour);
-    box-shadow: 0px 2px 60px var(--box-shadow);
+    background-color: white;
+    height: 5vh;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2)
+}
+
+#Container{
+    font-family: Arial, Helvetica, sans-serif;
+    height: 94%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+#NumberInput{
+    border: none;
+    border-bottom: royalblue 0.15rem solid;
+    background-color: rgb(236, 235, 235);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    height: 100%;
 }
