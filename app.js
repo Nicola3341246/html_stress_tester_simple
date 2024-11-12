@@ -16,7 +16,7 @@ if (currentTheme) {
 function LoadDivs() {
     let startTime = new Date();
     let htmlContent = '';
-    
+
     for (let index = 1; index <= numberInput.value; index++) {
         htmlContent += `<p class="TestContainer">
         Test ${index}
@@ -28,7 +28,7 @@ function LoadDivs() {
 }
 
 function Clear(){
-    testItemContainer.innerHTML = '';
+    testItemContainer.innerHTML = '<div class="FactoryLoader"></div>';
     timeDisplay.innerHTML = 'Time: XXXms'
 }
 
