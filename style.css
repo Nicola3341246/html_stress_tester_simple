@@ -1,4 +1,15 @@
 :root{
+    --background-colour: #e9e9e9;
+    --background-container-colour: #ffffff;
+    --field-background: #e9e9e9;
+    --box-shadow: #00000033;
+    --box-shadow-dark: #808080;
+    --background-button-color: #4169e1;
+    --text-colour: #000;
+    --button-text-colour: #fff;
+}
+
+[data-theme="dark"]{
     --background-colour: #3f3f3f;
     --background-container-colour: #272727;
     --field-background: #2e2e2e;
@@ -34,6 +45,10 @@ p{
 }
 
 .Header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     background-color: var(--background-container-colour);
     height: 100%;
     box-shadow: 0px 2px 60px var(--box-shadow);
@@ -89,7 +104,7 @@ p{
     justify-content: center;
     align-items: center;
     background-color: var(--background-button-color);
-    color: var(--text-colour);
+    color: var(--button-text-colour);
     border: none;
     height: 2rem;
     min-width: 5rem;
@@ -148,13 +163,17 @@ p{
     background-color: var(--background-container-colour);
     color: var(--text-colour);
     height: 100%;
+    padding: 0 4%;
     box-shadow: 0px 2px 60px var(--box-shadow);
+
+    display: flex;
+    align-items: center;
 }
 
 #NumberInput{
     border: none;
-    border-bottom: royalblue 0.15rem solid;
-    background-color: rgb(236, 235, 235);
+    border-bottom: var(--background-button-color) 0.15rem solid;
+    background-color: var(--background-colour);
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     height: 1.75rem;
