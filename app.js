@@ -1,6 +1,10 @@
 const testItemContainer = document.getElementById("testItemContainer");
 const numberInput = document.getElementById("NumberInput");
 const timeDisplay = document.getElementById("StopWatchDisplay");
+var form = document.getElementById("inputRow");
+
+function handleForm(event) { event.preventDefault(); } 
+form.addEventListener('submit', handleForm);
 
 function LoadDivs() {
     let startTime = new Date();
