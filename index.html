@@ -6,22 +6,24 @@
     <title>🏁HTML-Speed tester🏁</title>
     <link rel="stylesheet" href="./style.css"/>
 </head>
-<body>
+<body class="Body">
     <header class="Header">
         <h1 class="Title">HTML Speed tester</h1>
     </header>
-    <div id="Container">
-        <div class="InteractionContainer">
-        <div class="InputRow">
-            <input id="NumberInput" type="number">
-            <button class="inputBtn" onclick="LoadDivs()">Generate</button>
-            <button class="inputBtn" onclick="Clear()">Clear</button>
+    <div class="Container">
+        <div class="NavContainer">
+            <div class="InteractionContainer">
+                <form class="InputRow" id="inputRow">
+                    <input id="NumberInput" type="number">
+                    <button type="submit" class="inputBtn" onclick="LoadDivs()">Generate</button>
+                    <button class="inputBtn" onclick="Clear()">Clear</button>
+                </form>
+                <div class="StopWatchContainer">
+                    <p id="StopWatchDisplay">Time: XXXms</p>
+                </div>
+            </div>
+            <div></div>
         </div>
-        <div class="StopWatchContainer">
-            <p id="StopWatchDisplay">Time: XXXms</p>
-        </div>
-        </div>
-
         <div class="TestItemContainer" id="testItemContainer">
             &nbsp;
         </div>
