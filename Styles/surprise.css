@@ -1,0 +1,105 @@
+.grid-container{
+    display: inline-grid;
+    background-color: var(--background-container-colour);
+    box-shadow: 0px 2px 10px var(--box-shadow-dark);
+    width: 35vw;
+    height: 35vw;
+    margin: auto auto;
+}
+
+.InteractionContainer.MiniGame {
+    margin: auto;
+}
+
+.InteractionContainer.MiniGame .InputRow{
+    width: 8vw;
+}
+
+.grid-item{
+    text-align: center;
+    align-content: center;
+    position: relative;
+}
+
+.grid-item::before{
+    content: '';
+    display: inline-block;
+    width: 50%;
+    height: 50%;
+    -moz-border-radius: 7.5px;
+    -webkit-border-radius: 7.5px;
+    border-radius: 100%;
+    background-color: var(--background-colour);
+    transition: 0.25s;
+}
+
+.grid-item::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    transition: 0.25s;
+    z-index: 2; /* Ensure this is above ::before */
+}
+
+.grid-item.snake-block::after{
+    width: 85%;
+    height: 85%;
+    border-radius: 15px;
+    background-color: var(--accent-color);
+}
+
+.grid-item.snake-head-block::after{
+    animation: grow 0.5s forwards; 
+    filter: brightness(1.5);
+}
+
+.grid-item.snake-tail-block::after{
+    filter: brightness(0.7);
+    animation: shrink 1s forwards; 
+}
+
+.grid-item.collision-block::after{
+    background-color: red;
+}
+
+.grid-item.fruit-block::after{
+    width: 70%;
+    height: 70%;
+    background-color: rgb(255, 94, 0);
+}
+
+.animate-eat {
+    animation: eat 0.2s forwards;
+}
+
+@keyframes shrink {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(0);
+    }
+}
+
+@keyframes grow {
+    from {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes eat {
+    100%, 0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+}
