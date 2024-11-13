@@ -7,6 +7,13 @@
     margin: auto auto;
 }
 
+.resetBtn{
+    border-radius: 5px;
+    -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
+}
+
 .InteractionContainer.MiniGame {
     margin: auto;
 }
@@ -43,7 +50,7 @@
     height: 50%;
     border-radius: 50%;
     transition: 0.25s;
-    z-index: 2; /* Ensure this is above ::before */
+    z-index: 2;
 }
 
 .grid-item.snake-block::after{

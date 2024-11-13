@@ -58,8 +58,8 @@ class Game {
             gameGrid.appendChild(currentField.fieldHtml);
         }
 
-        gameGrid.style.grid = `repeat(${this.gridBounds}, 1fr) / repeat(${this.gridBounds}, 1fr)`
-        this.GenerateFruit()
+        gameGrid.style.grid = `repeat(${this.gridBounds}, 1fr) / repeat(${this.gridBounds}, 1fr)`;
+        this.GenerateFruit();
     }
 
     UpdateGrid(){
@@ -82,13 +82,13 @@ class Game {
                 GetFruitCoordinates();
             }
         };
-    
+        
         GetFruitCoordinates();
-
+        
         this.fruit = new Fruit(this, fruitX, fruitY);
-
+        
         var fieldToUpdate = this.fields.find(field => field.x === fruitX && field.y === fruitY);
-
+        
         fieldToUpdate.fieldHtml.classList.add(fruitFieldClass);
     }
 
@@ -122,6 +122,7 @@ class Snake{
         this.y = y;
         this.segmentCount = 2
 
+        this.eatDuration = 0.2;
         this.game = game;
     }
 
@@ -186,10 +187,14 @@ class Snake{
         field.occupiedValue++;
 
         setTimeout(() => {
-            field.fieldHtml.classList.add(animateEat);
+            console.log(1 / this.game.gridBounds ** 2)
+            if(field.fieldHtml.classList.contains(snakeFieldClass)){
+            let calculatedAnimDuration = this.eatDuration - this.segmentCount * (this.eatDuration / (this.game.gridBounds ** 2 + 1))
+            field.fieldHtml.style.animation = `eat ${calculatedAnimDuration}s forwards`;
+            }
 
             setTimeout(() => {
-                field.fieldHtml.classList.remove(animateEat);
+                field.fieldHtml.style.animation = "";
             }, 200);
         }, index * 100);
     });
@@ -214,7 +219,15 @@ class Fruit{
 }
 
 var gameGrid = document.querySelector(".grid-container");
-var game = new Game(8);
+var gridSize = 8;
+var game = new Game(gridSize);
+
+document.querySelector(".resetBtn").addEventListener("click", (e) => {
+    gameGrid.innerHTML = "";
+    game = new Game(gridSize);
+    game.InitializeGrid();
+    game.startGame();
+});
 
 document.addEventListener('keypress', (e) => {
     if (game.validKeys.includes(e.key)) {
