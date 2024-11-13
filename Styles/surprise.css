@@ -29,7 +29,7 @@
     -moz-border-radius: 7.5px;
     -webkit-border-radius: 7.5px;
     border-radius: 100%;
-    background-color: rgb(235, 234, 234);
+    background-color: var(--background-colour);
     transition: 0.25s;
 }
 
