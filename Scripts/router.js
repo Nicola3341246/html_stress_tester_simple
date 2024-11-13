@@ -11,6 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
       js: ['/pages/snake/snake.js'],
       css: '/pages/snake/snake.css',
       init: 'snakeInitialize'  // Initialize function for this page
+    },
+    'question': {
+      html: '/pages/question/question.html',
+      js: ['/pages/question/question.js'],
+      css: '/pages/question/question.css',
+      init: 'questionInitialize'  // Initialize function for this page
     }
   };
 
