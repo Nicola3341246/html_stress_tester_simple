@@ -1,6 +1,6 @@
-const testItemContainer = document.getElementById("testItemContainer");
-const numberInput = document.getElementById("NumberInput");
-const timeDisplay = document.getElementById("StopWatchDisplay");
+let testItemContainer = document.getElementById("testItemContainer");
+let numberInput = document.getElementById("NumberInput");
+let timeDisplay = document.getElementById("StopWatchDisplay");
 var form = document.getElementById("inputRow");
 
 function LoadDivs() {
@@ -23,4 +23,13 @@ function Clear(){
 }
 
 function handleForm(event) { event.preventDefault(); } 
-form.addEventListener('submit', handleForm);
+
+function elementStressTestInitialize(){
+    console.log("Initialize stress test")
+    testItemContainer = document.getElementById("testItemContainer");
+    numberInput = document.getElementById("NumberInput");
+    timeDisplay = document.getElementById("StopWatchDisplay");
+    form = document.getElementById("inputRow");
+    
+    form.addEventListener('submit', handleForm);
+}
