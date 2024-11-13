@@ -47,7 +47,6 @@ p{
 }
 
 .Header{
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -131,7 +130,7 @@ p{
     background-color: var(--accent-color-hover);
 }
 
-.Title, .SecondaryPage, .ThirdPage{
+.Title, .SecondaryPage{
     margin: 0;
     padding: 0;
     color: var(--text-colour);
@@ -141,11 +140,6 @@ p{
 .SecondaryPage{
     font-size: large;
 }
-
-.ThirdPage{
-    font-size: large;
-}
-
 
 .Title{
     font-size: x-large;

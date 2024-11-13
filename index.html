@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🏁HTML-Speed tester🏁</title>
-    <link rel="stylesheet" href="./style.css"/>
+    <link rel="stylesheet" href="./Styles/style.css"/>
     <link rel="stylesheet" href="./Styles/components/slider.css"/>
     <link rel="stylesheet" href="./Styles/Animations/loadingAnimation.css"/>
 </head>
 <body class="Body">
     <header class="Header">
         <div class="Link-Container">
-            <a href="index.html" class="Title">HTML Speed tester</a>
-            <a href="./surprise.html" class="SecondaryPage">Surprise</a>
-            <a href="./question.html" class="ThirdPage">Question</a>
-
+            <a data-route="home" class="Title">HTML Speed tester</a>
+            <a data-route="snake" class="SecondaryPage">Surprise</a>
+            <a data-route="question" class="ThirdPage">Question</a>
         </div>
         <div class="switch">
             <label class="theme-switch" for="checkbox">
@@ -23,26 +22,11 @@
             </label>
         </div>
     </header>
-    <div class="Container">
-        <div class="NavContainer">
-            <div class="InteractionContainer">
-                <form class="InputRow" id="inputRow">
-                    <input id="NumberInput" type="number">
-                    <button type="submit" class="inputBtn" onclick="LoadDivs()">Generate</button>
-                    <button class="inputBtn" onclick="Clear()">Clear</button>
-                </form>
-                <div class="StopWatchContainer">
-                    <p id="StopWatchDisplay">Time: XXXms</p>
-                </div>
-            </div>
-            <div></div>
-        </div>
-        <div class="TestItemContainer" id="testItemContainer">
-            <div class="FactoryLoader"></div>
-        </div>
+    <div id="content">
     </div>
+    
     <footer class="Footer"><p>Sandbox Production Nicola & Igor & Sergio © - 2024</p></footer>
-      <script src="./Scripts/app.js"></script>
+      <script src="./Scripts/router.js"></script>
       <script src="./Scripts/darkmode.js"></script>
 </body>
 </html>
