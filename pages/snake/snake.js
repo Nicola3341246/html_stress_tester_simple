@@ -50,7 +50,6 @@ class Game {
     }
 
     InitializeGrid(){
-        console.log("dasdf");
         for(let i = 0; i < this.gridBounds ** 2; i++){
             var currentY = Math.floor(i / this.gridBounds) + 1;
             var currentX = i % this.gridBounds + 1;
@@ -239,11 +238,7 @@ var gridSize = 8;
 var game = new Game(gridSize);
 
 document.querySelector(".resetBtn").addEventListener("click", (e) => {
-    gameGrid.innerHTML = "";
-    clearInterval(gameTickIntervalId);
-    game = new Game(gridSize);
-    game.InitializeGrid();
-    game.startGame();
+    basicInit();
 });
 
 document.addEventListener('keypress', (e) => {
@@ -258,5 +253,19 @@ document.addEventListener('keypress', (e) => {
     }
 });
 
-game.InitializeGrid();
-game.startGame();
+function basicInit() {
+    gameGrid = document.querySelector(".grid-container");
+    gameGrid.innerHTML = "";
+    clearInterval(gameTickIntervalId);
+    game = new Game(gridSize);
+    game.InitializeGrid();
+    game.startGame();
+  }
+
+  function snakeInitialize(){
+    console.log("Initialize snake")
+    basicInit();
+    document.querySelector(".resetBtn").addEventListener("click", (e) => {
+        basicInit();
+    });
+  }
