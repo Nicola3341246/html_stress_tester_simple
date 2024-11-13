@@ -13,6 +13,7 @@ class Game {
         this.direction = "";
         this.directionQueue = [];
         this.snakeDied = false;
+        this.playerWon = false;
 
         this.fruit;
         this.snake = new Snake(this, Math.floor(Math.random() * (this.gridBounds - 1 + 1)) + 1,
@@ -26,11 +27,10 @@ class Game {
 
     GameTick(){
         if (this.directionQueue.length > 0) {
-            console.log(this.directionQueue)
             this.direction = this.directionQueue.shift();
         }
 
-        if(this.direction != "" && !this.snakeDied){
+        if(this.direction != "" && !this.snakeDied && !this.playerWon){
             if(this.fruit == null){
                 this.GenerateFruit();
             }
@@ -178,8 +178,29 @@ class Snake{
     }
 
     PickUpItem(){
-        this.game.fields.filter(field => field.occupiedValue > 0).forEach(field => {field.occupiedValue++;});
+        this.game.fields
+    .filter(field => field.occupiedValue > 0)
+    .sort((a, b) => b.occupiedValue - a.occupiedValue)
+    .forEach((field, index) => {
+        field.occupiedValue++;
+
+        setTimeout(() => {
+            field.fieldHtml.classList.add("animate-eat");
+
+            setTimeout(() => {
+                field.fieldHtml.classList.remove("animate-eat");
+            }, 200);
+        }, index * 100);
+    });
+
+
         this.segmentCount++;
+
+
+        if(this.segmentCount === this.game.gridBounds ** 2){
+            console.log("You won!")
+            this.game.playerWon = true;
+        }
     }
 }
 
@@ -199,7 +220,7 @@ document.addEventListener('keypress', (e) => {
         const lastDirectionInQueue = game.directionQueue[game.directionQueue.length - 1] || game.direction;
         
         if (e.key !== game.GetOppositeDirection(lastDirectionInQueue)) {
-            if (game.directionQueue.length < 3) {
+            if (game.directionQueue.length < 2) {
                 game.directionQueue.push(e.key);
             }
         }
