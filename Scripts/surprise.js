@@ -3,6 +3,7 @@ const snakeHeadFieldClass = "snake-head-block";
 const snakeTailFieldClass = "snake-tail-block";
 const fruitFieldClass = "fruit-block";
 const collisionFieldClass = "collision-block";
+const animateEat = "animate-eat";
 
 class Game {
     constructor(gridBounds){
@@ -185,10 +186,10 @@ class Snake{
         field.occupiedValue++;
 
         setTimeout(() => {
-            field.fieldHtml.classList.add("animate-eat");
+            field.fieldHtml.classList.add(animateEat);
 
             setTimeout(() => {
-                field.fieldHtml.classList.remove("animate-eat");
+                field.fieldHtml.classList.remove(animateEat);
             }, 200);
         }, index * 100);
     });
