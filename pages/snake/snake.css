@@ -37,7 +37,6 @@
     -webkit-border-radius: 7.5px;
     border-radius: 100%;
     background-color: var(--background-colour);
-    transition: 0.25s;
 }
 
 .grid-item::after {
@@ -49,7 +48,6 @@
     width: 50%;
     height: 50%;
     border-radius: 50%;
-    transition: 0.25s;
     z-index: 2;
 }
 
