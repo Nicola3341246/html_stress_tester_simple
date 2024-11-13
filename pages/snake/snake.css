@@ -8,10 +8,10 @@
 }
 
 .resetBtn{
-    border-radius: 5px;
+    height: 1.5rem;
     -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none; 
+    -ms-user-select: none;
+    user-select: none; 
 }
 
 .InteractionContainer.MiniGame {
@@ -56,6 +56,7 @@
     height: 85%;
     border-radius: 15%;
     background-color: var(--accent-color);
+    box-shadow: 0px 0px 10px var(--box-shadow);
 }
 
 .grid-item.snake-head-block::after{
