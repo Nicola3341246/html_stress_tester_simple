@@ -41,6 +41,7 @@ class Game {
     }
 
     InitializeGrid(){
+        console.log("dasdf");
         for(let i = 0; i < this.gridBounds ** 2; i++){
             var currentY = Math.floor(i / this.gridBounds) + 1;
             var currentX = i % this.gridBounds + 1;
