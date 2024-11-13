@@ -59,7 +59,7 @@
 }
 
 .grid-item.snake-head-block::after{
-    animation: grow 0.5s forwards; 
+    animation: grow 0.3s forwards; 
     filter: brightness(1.5);
 }
 
@@ -93,10 +93,10 @@
 
 @keyframes grow {
     from {
-        transform: translate(-50%, -50%) scale(1.1);
+        transform: translate(-50%, -50%) scale(0.9);
     }
     to {
-        transform: translate(-50%, -50%) scale(1);
+        transform: translate(-50%, -50%) scale(0.8);
     }
 }
 

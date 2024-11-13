@@ -8,7 +8,7 @@ let gameTickIntervalId = null;
 class Game {
     constructor(gridBounds){
         this.gridBounds = gridBounds;
-        this.tickRate = 350;
+        this.tickRate = 230;
         this.fields = [];
         this.validKeys = ['w', 'a', 's', 'd']
         this.direction = "";
@@ -130,7 +130,7 @@ class Snake{
     constructor(game, x, y){
         this.x = x;
         this.y = y;
-        this.segmentCount = 2
+        this.segmentCount = 3;
 
         this.eatDuration = 100;
         this.game = game;
@@ -171,8 +171,10 @@ class Snake{
             snakeTail.fieldHtml.style.animation = "";
         }
 
-        lastField.fieldHtml.classList.add(snakeTailFieldClass);
-        lastField.fieldHtml.style.animation = "shrink 1s forwards";
+        if(lastField != null){
+            lastField.fieldHtml.classList.add(snakeTailFieldClass);
+            lastField.fieldHtml.style.animation = "shrink 1s forwards";
+        }
         fieldToUpdate.fieldHtml.classList.add(snakeFieldClass);
         fieldToUpdate.fieldHtml.classList.add(snakeHeadFieldClass);
         fieldToUpdate.occupiedValue = this.segmentCount;
@@ -233,7 +235,7 @@ class Fruit{
 }
 
 var gameGrid = document.querySelector(".grid-container");
-var gridSize = 5;
+var gridSize = 8;
 var game = new Game(gridSize);
 
 document.querySelector(".resetBtn").addEventListener("click", (e) => {
