@@ -1,0 +1,29 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.buttons{
+    height: 50px;
+    background-color: aqua;
+}
+.Area{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 85%;
+    background-color: red;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+
+}
+
+.buttons {
+    height: 50px;
+    background-color: aqua;
+    margin: 10px;
+    width: 100px;
+}
