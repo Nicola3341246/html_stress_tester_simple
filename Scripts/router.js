@@ -1,16 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Object to define routes and their associated files
     const routeConfig = {
-      'home': {
-        html: '/pages/elementStressTest/elementStressTest.html',
-        js: '/pages/elementStressTest/elementStressTest.js',
-        css: '/pages/elementStressTest/elementStressTest.css'
-      },
-      'snake': {
-        html: '/pages/snake/snake.html',
-        js: '/pages/snake/snake.js',
-        css: '/pages/snake/snake.css'  // Add the CSS reference here
-      }
+        'home':{
+            html: '/pages/home/home.html',
+        },
+        'elementStressTest': {
+            html: '/pages/elementStressTest/elementStressTest.html',
+            js: '/pages/elementStressTest/elementStressTest.js',
+            css: '/pages/elementStressTest/elementStressTest.css',
+        },
+        'snake': {
+            html: '/pages/snake/snake.html',
+            js: '/pages/snake/snake.js',
+            css: '/pages/snake/snake.css',
+        }
     };
   
     // Function to load the HTML content of the page
