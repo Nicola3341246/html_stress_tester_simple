@@ -14,6 +14,6 @@ Alternatively, if you have the Git CLI installed on your PC, you can run `git cl
 ### Team
 
 Thanks to all participants of this project:
-- **Niculian**
-- **Igor645**
-- **Sergio Masegosa Garcia**
+- **[Niculian](https://github.com/Nicola3341246)**
+- **[Igor645](https://github.com/Igor645)**
+- **[Sergio Masegosa Garcia](https://github.com/SergioMasegosa11)**
