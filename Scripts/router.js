@@ -14,15 +14,20 @@ const routeConfig = {
         init: 'elementStressTestInitialize'
     },
     'snake': {
-        html: './pages/snake/snake.html',
-        js: ['./pages/snake/snake.js'],
-        css: './pages/snake/snake.css',
-        init: 'snakeInitialize' 
+      html: '/pages/snake/snake.html',
+      js: ['/pages/snake/snake.js'],
+      css: '/pages/snake/snake.css',
+      init: 'snakeInitialize'  // Initialize function for this page
+    },
+    'question': {
+      html: '/pages/question/question.html',
+      js: ['/pages/question/question.js'],
+      css: '/pages/question/question.css',
+      init: 'questionInitialize'  // Initialize function for this page
     }
-};
+  };
 
-function RunPageChange() {
-    function loadPage(page) {
+  function loadPage(page) {
     const contentDiv = document.getElementById('content');
     const route = routeConfig[page];
 
@@ -141,4 +146,3 @@ function RunPageChange() {
         loadPage(e.state.page);
     }
     });
-};
