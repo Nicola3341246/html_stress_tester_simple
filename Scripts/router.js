@@ -27,7 +27,8 @@ const routeConfig = {
     }
   };
 
-  function loadPage(page) {
+function RunPageChange() {
+    function loadPage(page) {
     const contentDiv = document.getElementById('content');
     const route = routeConfig[page];
 
@@ -146,3 +147,4 @@ const routeConfig = {
         loadPage(e.state.page);
     }
     });
+};
