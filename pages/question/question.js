@@ -17,16 +17,12 @@ class Question {
     }
     
     showCongratulations() {
-        const container = document.querySelector('.Container');
+        const area = document.querySelector('.Area');
         
-        container.innerHTML = '';
+        area.innerHTML = '';
         
-        const congratsMessage = document.createElement('h1');
-        congratsMessage.textContent = 'Gratulieren';
-        
-        container.appendChild(congratsMessage);
+        area.innerHTML = `<h1>Gratuliere!</h1>`;
     }
-    
 }
 
 const question = new Question();
