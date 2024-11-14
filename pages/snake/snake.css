@@ -10,8 +10,8 @@
 .resetBtn{
     border-radius: 5px;
     -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none; 
+    -ms-user-select: none;
+    user-select: none; 
 }
 
 .InteractionContainer.MiniGame {
