@@ -4,11 +4,11 @@ const snakeTailFieldClass = "snake-tail-block";
 const fruitFieldClass = "fruit-block";
 const collisionFieldClass = "collision-block";
 const animateEat = "animate-eat";
-
+let gameTickIntervalId = null;
 class Game {
     constructor(gridBounds){
         this.gridBounds = gridBounds;
-        this.tickRate = 350;
+        this.tickRate = 230;
         this.fields = [];
         this.validKeys = ['w', 'a', 's', 'd']
         this.direction = "";
@@ -23,7 +23,7 @@ class Game {
 
 
     startGame(){
-        setInterval(() => this.GameTick(), this.tickRate)
+        gameTickIntervalId = setInterval(() => this.GameTick(), this.tickRate);
     }
 
     GameTick(){
@@ -38,10 +38,18 @@ class Game {
             this.snake.Move();
             this.UpdateGrid();
         }
+        else if(this.playerWon){
+            var emptyField = this.fields.find(field => !field.fieldHtml.classList.contains(snakeFieldClass));
+            if(emptyField != null){
+                console.log(emptyField)
+                this.fields.find(field => field.fieldHtml.classList.contains(snakeHeadFieldClass)).fieldHtml.classList.remove(snakeHeadFieldClass);
+                emptyField.fieldHtml.classList.add(snakeFieldClass);
+                emptyField.fieldHtml.classList.add(snakeHeadFieldClass);
+            }
+        }
     }
 
     InitializeGrid(){
-        console.log("dasdf");
         for(let i = 0; i < this.gridBounds ** 2; i++){
             var currentY = Math.floor(i / this.gridBounds) + 1;
             var currentX = i % this.gridBounds + 1;
@@ -59,8 +67,8 @@ class Game {
             gameGrid.appendChild(currentField.fieldHtml);
         }
 
-        gameGrid.style.grid = `repeat(${this.gridBounds}, 1fr) / repeat(${this.gridBounds}, 1fr)`
-        this.GenerateFruit()
+        gameGrid.style.grid = `repeat(${this.gridBounds}, 1fr) / repeat(${this.gridBounds}, 1fr)`;
+        this.GenerateFruit();
     }
 
     UpdateGrid(){
@@ -83,13 +91,13 @@ class Game {
                 GetFruitCoordinates();
             }
         };
-    
+        
         GetFruitCoordinates();
-
+        
         this.fruit = new Fruit(this, fruitX, fruitY);
-
+        
         var fieldToUpdate = this.fields.find(field => field.x === fruitX && field.y === fruitY);
-
+        
         fieldToUpdate.fieldHtml.classList.add(fruitFieldClass);
     }
 
@@ -121,8 +129,9 @@ class Snake{
     constructor(game, x, y){
         this.x = x;
         this.y = y;
-        this.segmentCount = 2
+        this.segmentCount = 3;
 
+        this.eatDuration = 100;
         this.game = game;
     }
 
@@ -156,10 +165,15 @@ class Snake{
 
         this.game.fields.find(field => field.fieldHtml.classList.contains(snakeHeadFieldClass)).fieldHtml.classList.remove(snakeHeadFieldClass);
         if(this.game.fields.find(field => field.fieldHtml.classList.contains(snakeTailFieldClass))){
-            this.game.fields.find(field => field.fieldHtml.classList.contains(snakeTailFieldClass)).fieldHtml.classList.remove(snakeTailFieldClass);
+            var snakeTail = this.game.fields.find(field => field.fieldHtml.classList.contains(snakeTailFieldClass));
+            snakeTail.fieldHtml.classList.remove(snakeTailFieldClass);
+            snakeTail.fieldHtml.style.animation = "";
         }
 
-        lastField.fieldHtml.classList.add(snakeTailFieldClass);
+        if(lastField != null){
+            lastField.fieldHtml.classList.add(snakeTailFieldClass);
+            lastField.fieldHtml.style.animation = "shrink 1s forwards";
+        }
         fieldToUpdate.fieldHtml.classList.add(snakeFieldClass);
         fieldToUpdate.fieldHtml.classList.add(snakeHeadFieldClass);
         fieldToUpdate.occupiedValue = this.segmentCount;
@@ -186,13 +200,17 @@ class Snake{
     .forEach((field, index) => {
         field.occupiedValue++;
 
+        let calculatedAnimDuration = this.eatDuration - this.segmentCount * (this.eatDuration / (this.game.gridBounds ** 2 + 1))
         setTimeout(() => {
-            field.fieldHtml.classList.add(animateEat);
+            console.log(1 / this.game.gridBounds ** 2)
+            if(field.fieldHtml.classList.contains(snakeFieldClass)){
+            field.fieldHtml.style.animation = `eat 0.2s forwards`;
+            }
 
             setTimeout(() => {
-                field.fieldHtml.classList.remove(animateEat);
+                field.fieldHtml.style.animation = "";
             }, 200);
-        }, index * 100);
+        }, index * calculatedAnimDuration);
     });
 
 
@@ -201,6 +219,7 @@ class Snake{
 
         if(this.segmentCount === this.game.gridBounds ** 2){
             console.log("You won!")
+            this.game.fields.find(field => field.fieldHtml.classList.contains(snakeTailFieldClass)).fieldHtml.style.animation = "";
             this.game.playerWon = true;
         }
     }
@@ -215,7 +234,12 @@ class Fruit{
 }
 
 var gameGrid = document.querySelector(".grid-container");
-var game = new Game(8);
+var gridSize = 8;
+var game = new Game(gridSize);
+
+document.querySelector(".resetBtn").addEventListener("click", (e) => {
+    basicInit();
+});
 
 document.addEventListener('keypress', (e) => {
     if (game.validKeys.includes(e.key)) {
@@ -229,5 +253,19 @@ document.addEventListener('keypress', (e) => {
     }
 });
 
-game.InitializeGrid();
-game.startGame();
+function basicInit() {
+    gameGrid = document.querySelector(".grid-container");
+    gameGrid.innerHTML = "";
+    clearInterval(gameTickIntervalId);
+    game = new Game(gridSize);
+    game.InitializeGrid();
+    game.startGame();
+  }
+
+  function snakeInitialize(){
+    console.log("Initialize snake")
+    basicInit();
+    document.querySelector(".resetBtn").addEventListener("click", (e) => {
+        basicInit();
+    });
+  }
