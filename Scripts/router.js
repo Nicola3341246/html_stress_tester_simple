@@ -1,21 +1,26 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const routeConfig = {
+window.addEventListener('popstate', RunPageChange)
+document.addEventListener('DOMContentLoaded', RunPageChange);
+
+const routeConfig = {
     'home':{
-        html: '/pages/home/home.html',
+        html: './pages/home/home.html',
+        js: [ '/pages/home/home.js'],
     },
     'elementStressTest': {
-      html: '/pages/elementStressTest/elementStressTest.html',
-      js: ['/pages/elementStressTest/elementStressTest.js'],
-      css: '/pages/elementStressTest/elementStressTest.css',
-      init: 'elementStressTestInitialize'
+        html: '/pages/elementStressTest/elementStressTest.html',
+        js: ['/pages/elementStressTest/elementStressTest.js'],
+        css: '/pages/elementStressTest/elementStressTest.css',
+        init: 'elementStressTestInitialize'
     },
     'snake': {
-      html: '/pages/snake/snake.html',
-      js: ['/pages/snake/snake.js'],
-      css: '/pages/snake/snake.css',
-      init: 'snakeInitialize' 
+        html: '/pages/snake/snake.html',
+        js: ['/pages/snake/snake.js'],
+        css: '/pages/snake/snake.css',
+        init: 'snakeInitialize' 
     }
-  };
+};
+
+function RunPageChange() {
 
   function loadPage(page) {
     const contentDiv = document.getElementById('content');
@@ -136,4 +141,4 @@ document.addEventListener('DOMContentLoaded', () => {
       loadPage(e.state.page);
     }
   });
-});
+};
