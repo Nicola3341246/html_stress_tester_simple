@@ -315,6 +315,7 @@ function basicInit() {
     gameGrid = document.querySelector(".grid-container");
     gameGrid.innerHTML = "";
     clearInterval(gameTickIntervalId);
+    game.stopwatch.stop();
     game.stopwatch.reset();
     document.getElementById("StopWatchDisplay").textContent = "Time: 00:00";
     game = new Game(gridSize);
