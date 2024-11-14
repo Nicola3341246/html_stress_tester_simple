@@ -8,7 +8,7 @@
     --accent-color-hover: #3555b4;
     --text-colour: #000;
     --button-text-colour: #fff;
-
+    --alt-background-color: gray;
     --default-transition-time: 1s;
 }
 
@@ -20,6 +20,7 @@
     --box-shadow-dark: #808080;
     --accent-color: #484fad;
     --accent-color-hover: #4f56bd;
+    --alt-background-color: #2b2a2a;
     --text-colour: #fff;
 }
 
@@ -81,6 +82,34 @@ p{
     display: flex;
     flex-direction: column;
     justify-content: start;
+    position: relative;
+    overflow: hidden;
+}
+
+.Container::before{
+    content: "";
+    background-color: var(--alt-background-color);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50vw;
+    height: 40vh;
+    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+    z-index: -1;
+}
+
+
+
+.Container::after{
+    content: "";
+    background-color: var(--alt-background-color);
+    position: absolute;
+    bottom: 0%;
+    right: -5%;
+    width: 70vw;
+    height: 60vh;
+    clip-path: polygon(100% 0, 100% 11%, 10% 100%, 0% 100%);
+    z-index: -1;
 }
 
 .NavContainer{
