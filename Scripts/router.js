@@ -17,13 +17,13 @@ const routeConfig = {
       html: '/pages/snake/snake.html',
       js: ['/pages/snake/snake.js'],
       css: '/pages/snake/snake.css',
-      init: 'snakeInitialize'  // Initialize function for this page
+      init: 'snakeInitialize'
     },
     'question': {
       html: '/pages/question/question.html',
       js: ['/pages/question/question.js'],
       css: '/pages/question/question.css',
-      init: 'questionInitialize'  // Initialize function for this page
+      init: 'questionInitialize'
     }
   };
 
@@ -48,20 +48,16 @@ function RunPageChange() {
         .then(data => {
         contentDiv.innerHTML = data;
 
-        // Load the JS files for this page
         if (route.js.length > 0) {
             route.js.forEach(js => {
-            // Load the script and pass the initialization function
             loadScript(js, route.init);
             });
         }
 
-        // Load CSS for this page
         if (route.css) {
             loadCss(route.css);
         }
 
-        // Update the browser's history state
         history.pushState({ page: page }, page, `#${page}`);
         })
         .catch(error => {
@@ -70,29 +66,25 @@ function RunPageChange() {
     }
 
     function loadScript(scriptUrl, initFunction) {
-    // Check if the script is already loaded
     const existingScript = document.querySelector(`script[src="${scriptUrl}"]`);
     if (existingScript) {
         console.log(`${scriptUrl} is already loaded.`);
-        // If already loaded, immediately call the initialization function
         if (initFunction && typeof window[initFunction] === 'function') {
         console.log(`Calling ${initFunction}() after script is already loaded.`);
-        window[initFunction](); // Dynamically call the page-specific Initialize function
+        window[initFunction]();
         }
         return;
     }
 
-    // Create a new script element if it's not already loaded
     const script = document.createElement('script');
     script.src = scriptUrl;
     script.type = 'text/javascript';
 
     script.onload = () => {
         console.log(`${scriptUrl} loaded successfully`);
-        // Once the script is loaded, call the corresponding initialization function
         if (initFunction && typeof window[initFunction] === 'function') {
         console.log(`Calling ${initFunction}() after script is loaded.`);
-        window[initFunction]();  // Dynamically call the Initialize function
+        window[initFunction]();
         }
     };
 
@@ -104,14 +96,12 @@ function RunPageChange() {
     }
 
     function loadCss(cssUrl) {
-    // Check if the CSS file is already loaded
     const existingLink = document.querySelector(`link[href="${cssUrl}"]`);
     if (existingLink) {
         console.log(`${cssUrl} is already loaded.`);
         return;
     }
 
-    // Create a new link element to load the CSS
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = cssUrl;
@@ -127,7 +117,6 @@ function RunPageChange() {
     document.head.appendChild(link);
     }
 
-    // Add event listeners to all links with the data-route attribute
     const links = document.querySelectorAll('a[data-route]');
     links.forEach(link => {
     link.addEventListener('click', (e) => {
@@ -137,11 +126,9 @@ function RunPageChange() {
     });
     });
 
-    // Load the initial page based on the URL's hash or default to 'home'
     const initialPage = window.location.hash.slice(1) || 'home';
     loadPage(initialPage);
 
-    // Handle browser history navigation (back/forward buttons)
     window.addEventListener('popstate', (e) => {
     if (e.state && e.state.page) {
         loadPage(e.state.page);
