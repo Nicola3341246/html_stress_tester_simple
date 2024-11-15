@@ -66,9 +66,28 @@ p{
 .Link-Container{
     display: flex;
     justify-content: space-evenly;
-    width: 20vw;
+    width: auto;
     flex-direction: row;
     align-items: center;
+    white-space: nowrap;
+    gap: 2%;
+}
+
+.Link-Container > a {
+    display: inline-block;
+    position: relative;
+}
+
+.Link-Container > a:not(.Title):not(:last-child)::after {
+    content: "|";
+    font-size: medium;
+    margin-right: 0%;
+    font-weight: normal;
+    position: absolute;
+    right: -10px;
+    top: 40%;
+    transform: translateY(-50%);
+    font-size: 20px;
 }
 
 .Container{
@@ -97,8 +116,6 @@ p{
     clip-path: polygon(100% 0, 0 100%, 100% 100%);
     z-index: -1;
 }
-
-
 
 .Container::after{
     content: "";
@@ -137,36 +154,6 @@ p{
     width: 25rem;
 }
 
-.StopWatchContainer{
-    background-color: var(--background-container-colour);
-    box-shadow: 0px 2px 10px var(--box-shadow-dark);
-    margin: 0 1rem;
-    width: 9rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.inputBtn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--accent-color);
-    color: var(--button-text-colour);
-    border: none;
-    height: 2rem;
-    min-width: 5rem;
-    padding: 3%;
-    text-align: center;
-}
-
-.inputBtn:hover{
-    transition: 0.25s;
-    transform: scale(1.1);
-    cursor: pointer;
-    background-color: var(--accent-color-hover);
-}
-
 .Title, .SecondaryPage{
     margin: 0;
     padding: 0;
@@ -178,50 +165,19 @@ p{
     cursor: pointer;
 }
 
+.SecondaryPage:hover{
+    text-decoration: underline;
+}
+
 .SecondaryPage{
     font-size: large;
+    margin-left: 1%;
 }
 
 .Title{
     font-size: x-large;
     margin-left: 1%;
     font-weight: bold;
-}
-
-.TestItemContainer{
-    position: relative;
-    background-color: var(--background-container-colour);
-    box-shadow: 0px 2px 10px var(--box-shadow-dark);
-    margin: 0;
-    margin-top: 2rem;
-    width: 100%;
-    height: 90%;
-    max-height: 65vh;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    border: var(--background-container-colour) 2% solid;
-    align-items: flex-start;
-    align-content: flex-start;
-    overflow-y: scroll;
-}
-
-.TestContainer{
-    margin: 5px;
-    padding: 5px;
-    width: 80px;
-    min-width: fit-content;
-    text-align: center;
-    
-    box-shadow: 0px 2px 3px var(--box-shadow-dark);
-    background-color: var(--field-background);
-}
-
-.TestContainer:hover{
-    cursor: pointer;
-    transform: scale(1.1);
-    filter: brightness(0.9);
 }
 
 .Footer{
