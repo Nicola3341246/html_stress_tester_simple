@@ -23,7 +23,7 @@
     --accent-color: #484fad;
     --accent-color-hover: #4f56bd;
     --alt-background-color: #2b2a2a;
-    --text-colour: #fff;
+    --text-colour: white;
 }
 
 *, *::before, *::after {
@@ -201,4 +201,35 @@ p{
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     height: 1.75rem;
+}
+
+.StopWatchContainer{
+    background-color: var(--background-container-colour);
+    box-shadow: 0px 2px 10px var(--box-shadow-dark);
+    margin: 0 1rem;
+    width: 9rem;
+    color: var(--text-colour);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--accent-color);
+    color: var(--button-text-colour);
+    border: none;
+    height: 2rem;
+    min-width: 5rem;
+    padding: 3%;
+    text-align: center;
+}
+
+.inputBtn:hover{
+    transition: 0.25s;
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: var(--accent-color-hover);
 }
