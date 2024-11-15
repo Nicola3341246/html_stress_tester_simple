@@ -8,8 +8,10 @@
     --accent-color-hover: #3555b4;
     --text-colour: #000;
     --button-text-colour: #fff;
-    --alt-background-color: rgb(179, 178, 178);
+    --alt-background-color: #b3b2b2;
+
     --default-transition-time: 1s;
+    --hover-transition-time: 0.25s;
 }
 
 [data-theme="dark"]{

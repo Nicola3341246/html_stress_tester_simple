@@ -22,7 +22,7 @@
 }
 
 .inputBtn:hover{
-    transition: 0.25s;
+    transition: var(--hover-transition-time);
     transform: scale(1.1);
     cursor: pointer;
     background-color: var(--accent-color-hover);
@@ -45,7 +45,7 @@
     border: var(--background-container-colour) 2% solid;
     align-items: flex-start;
     align-content: flex-start;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .TestContainer{

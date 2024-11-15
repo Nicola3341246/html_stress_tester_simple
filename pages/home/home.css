@@ -26,12 +26,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: 1s;
 }
 
 .Home_RedirectPageButton:hover {
     transform: scale(1.1);
-    transition: 0.25s;
+    transition: var(--hover-transition-time);
     box-shadow: 0px 2px 20px var(--box-shadow);
 }
 
