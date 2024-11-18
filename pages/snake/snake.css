@@ -84,6 +84,16 @@
     animation: eat 0.2s forwards;
 }
 
+.SegmentsContainer{
+    background-color: var(--background-container-colour);
+    box-shadow: 0px 2px 10px var(--box-shadow-dark);
+    width: 9rem;
+    color: var(--text-colour);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @keyframes shrink {
     from {
         transform: scale(1);

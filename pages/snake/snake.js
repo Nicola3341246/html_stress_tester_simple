@@ -5,6 +5,7 @@ const fruitFieldClass = "fruit-block";
 const collisionFieldClass = "collision-block";
 const animateEat = "animate-eat";
 
+
 let gameTickIntervalId = null;
 let stopwatch = null; // Variable to hold the stopwatch instance
 
@@ -60,6 +61,19 @@ class Game {
                 emptyField.fieldHtml.classList.add(snakeHeadFieldClass);
             }
         }
+    }
+
+    RenderWinScreen(){
+        let winScreen = document.querySelector(".winScreen");
+        let timerField = document.createElement("div")
+        let segmentsField = document.createElement("div");
+
+        timerField.innerText = `Time: ${this.stopwatch.GetFormattedTimeString()}`
+        segmentsField.innerText = `Segments: ${this.snake.segmentCount}`
+
+        winScreen.style.display = "flex";
+        winScreen.querySelector(".winDetails").appendChild(timerField);
+        winScreen.querySelector(".winDetails").appendChild(segmentsField);
     }
 
     InitializeGrid(){
@@ -132,8 +146,6 @@ class Field {
 
         this.fieldHtml = document.createElement("div");
         this.fieldHtml.classList.add("grid-item");
-        this.fieldHtml.dataset.x = this.x;
-        this.fieldHtml.dataset.y = this.y;
     }
 }
 
@@ -205,6 +217,7 @@ class Snake{
         
         if(fieldToUpdate.fieldHtml.classList.contains(fruitFieldClass)){
             this.PickUpItem();
+            this.UpdateSegmentsScore();
             this.game.fruit = null;
             fieldToUpdate.fieldHtml.classList.remove(fruitFieldClass);
         }
@@ -232,11 +245,16 @@ class Snake{
         this.segmentCount++;
 
         if(this.segmentCount === this.game.gridBounds ** 2){
-            console.log("You won!")
             this.game.fields.find(field => field.fieldHtml.classList.contains(snakeTailFieldClass)).fieldHtml.style.animation = "";
             this.game.stopwatch.stop();
             this.game.playerWon = true;
+            this.game.RenderWinScreen();
         }
+    }
+
+    UpdateSegmentsScore(){
+        let segmentsScore = document.getElementById("SegmentsDisplay");
+        segmentsScore.innerText = `Segments: ${this.segmentCount}/${this.game.gridBounds ** 2}`
     }
 }
 
@@ -276,16 +294,21 @@ class Stopwatch {
     }
 
     updateTime() {
-        const elapsed = Date.now() - this.startTime;
-        const seconds = Math.floor(elapsed / 1000);
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
         if(document.querySelector(".SnakeStopWatch")){
-            document.querySelector(".SnakeStopWatch").textContent = `Time: ${this.formatTime(minutes)}:${this.formatTime(remainingSeconds)}`;
+            document.querySelector(".SnakeStopWatch").textContent = `Time: ${this.GetFormattedTimeString()}`;
         }
         else{
             this.stop()
         }
+    }
+
+    GetFormattedTimeString(){
+        const elapsed = Date.now() - this.startTime;
+        const seconds = Math.floor(elapsed / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+
+        return `${this.formatTime(minutes)}:${this.formatTime(remainingSeconds)}`;
     }
 
     formatTime(value) {
@@ -312,8 +335,11 @@ document.addEventListener('keypress', (e) => {
 });
 
 function basicInit() {
+    document.querySelector(".winScreen").style.display = "none";
+    document.querySelector(".winDetails").innerText = "";
     gameGrid = document.querySelector(".grid-container");
     gameGrid.innerHTML = "";
+
     clearInterval(gameTickIntervalId);
     game.stopwatch.stop();
     game.stopwatch.reset();
@@ -321,10 +347,10 @@ function basicInit() {
     game = new Game(gridSize);
     game.InitializeGrid();
     game.startGame();
+    game.snake.UpdateSegmentsScore();
   }
 
 function snakeInitialize(){
-    console.log("Initialize snake")
     basicInit();
     document.querySelector(".resetBtn").addEventListener("click", (e) => {
         basicInit();
