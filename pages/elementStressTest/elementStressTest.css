@@ -1,33 +1,3 @@
-.StopWatchContainer{
-    background-color: var(--background-container-colour);
-    box-shadow: 0px 2px 10px var(--box-shadow-dark);
-    margin: 0 1rem;
-    width: 9rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.inputBtn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--accent-color);
-    color: var(--button-text-colour);
-    border: none;
-    height: 2rem;
-    min-width: 5rem;
-    padding: 3%;
-    text-align: center;
-}
-
-.inputBtn:hover{
-    transition: 0.25s;
-    transform: scale(1.1);
-    cursor: pointer;
-    background-color: var(--accent-color-hover);
-}
-
 .TestItemContainer{
     position: relative;
     background-color: var(--background-container-colour);
