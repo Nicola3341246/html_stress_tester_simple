@@ -1,5 +1,5 @@
 :root{
-    --background-colour: #e9e9e9;
+    --background-colour: #d4d4d4;
     --background-container-colour: #ffffff;
     --field-background: #e9e9e9;
     --box-shadow: #00000033;
@@ -8,17 +8,24 @@
     --accent-color-hover: #3555b4;
     --text-colour: #000;
     --button-text-colour: #fff;
+    --alt-background-color: rgb(179, 178, 178);
+    --default-transition-time: 1s;
 }
 
 [data-theme="dark"]{
     --background-colour: #3f3f3f;
     --background-container-colour: #272727;
     --field-background: #2e2e2e;
-    --box-shadow: #00000033;
-    --box-shadow-dark: #00000033;
+    --box-shadow: #d6d6d6;
+    --box-shadow-dark: #808080;
     --accent-color: #484fad;
     --accent-color-hover: #4f56bd;
-    --text-colour: #fff;
+    --alt-background-color: #2b2a2a;
+    --text-colour: white;
+}
+
+*, *::before, *::after, text {
+    transition: var(--default-transition-time);
 }
 
 body{
@@ -59,19 +66,67 @@ p{
 .Link-Container{
     display: flex;
     justify-content: space-evenly;
-    width: 20vw;
+    width: auto;
     flex-direction: row;
     align-items: center;
+    white-space: nowrap;
+    gap: 2%;
+}
+
+.Link-Container > a {
+    display: inline-block;
+    position: relative;
+}
+
+.Link-Container > a:not(.Title):not(:last-child)::after {
+    content: "|";
+    font-size: medium;
+    margin-right: 0%;
+    font-weight: normal;
+    position: absolute;
+    right: -10px;
+    top: 40%;
+    transform: translateY(-50%);
+    font-size: 20px;
 }
 
 .Container{
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 2% 4%;
     height: 93%;
     width: 92%;
+    padding: 2% 4%;
+    overflow-y: auto;
+
+    font-family: Arial, Helvetica, sans-serif;
+
     display: flex;
     flex-direction: column;
     justify-content: start;
+    position: relative;
+    overflow: hidden;
+}
+
+.Container::before{
+    content: "";
+    background-color: var(--alt-background-color);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50vw;
+    height: 40vh;
+    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+    z-index: -1;
+}
+
+.Container::after{
+    content: "";
+    background-color: var(--alt-background-color);
+    position: absolute;
+    bottom: 0%;
+    right: -5%;
+    width: 70vw;
+    height: 60vh;
+    clip-path: polygon(100% 0, 100% 11%, 10% 100%, 0% 100%);
+    z-index: -1;
 }
 
 .NavContainer{
@@ -99,37 +154,6 @@ p{
     width: 25rem;
 }
 
-.StopWatchContainer{
-    background-color: var(--background-container-colour);
-    box-shadow: 0px 2px 10px var(--box-shadow-dark);
-    margin: 0 1rem;
-    width: 9rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.inputBtn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--accent-color);
-    color: var(--button-text-colour);
-    border: none;
-    height: 2rem;
-    min-width: 5rem;
-    padding: 3%;
-    text-align: center;
-    transition: 1s;
-}
-
-.inputBtn:hover{
-    transition: 0.25s;
-    transform: scale(1.1);
-    cursor: pointer;
-    background-color: var(--accent-color-hover);
-}
-
 .Title, .SecondaryPage{
     margin: 0;
     padding: 0;
@@ -137,50 +161,23 @@ p{
     text-decoration: none;
 }
 
+.Title:hover, .SecondaryPage:hover{
+    cursor: pointer;
+}
+
+.SecondaryPage:hover{
+    text-decoration: underline;
+}
+
 .SecondaryPage{
     font-size: large;
+    margin-left: 1%;
 }
 
 .Title{
     font-size: x-large;
     margin-left: 1%;
     font-weight: bold;
-}
-
-.TestItemContainer{
-    position: relative;
-    background-color: var(--background-container-colour);
-    box-shadow: 0px 2px 10px var(--box-shadow-dark);
-    margin: 0;
-    margin-top: 2rem;
-    width: 100%;
-    height: 90%;
-    max-height: 65vh;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    border: var(--background-container-colour) 2% solid;
-    align-items: flex-start;
-    align-content: flex-start;
-    overflow-y: scroll;
-}
-
-.TestContainer{
-    margin: 5px;
-    padding: 5px;
-    width: 80px;
-    min-width: fit-content;
-    text-align: center;
-    
-    box-shadow: 0px 2px 3px var(--box-shadow-dark);
-    background-color: var(--field-background);
-}
-
-.TestContainer:hover{
-    cursor: pointer;
-    transform: scale(1.1);
-    filter: brightness(0.9);
 }
 
 .Footer{
@@ -202,4 +199,35 @@ p{
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     height: 1.75rem;
+}
+
+.StopWatchContainer{
+    background-color: var(--background-container-colour);
+    box-shadow: 0px 2px 10px var(--box-shadow-dark);
+    margin: 0 1rem;
+    width: 9rem;
+    color: var(--text-colour);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--accent-color);
+    color: var(--button-text-colour);
+    border: none;
+    height: 2rem;
+    min-width: 5rem;
+    padding: 3%;
+    text-align: center;
+}
+
+.inputBtn:hover{
+    transition: 0.25s;
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: var(--accent-color-hover);
 }

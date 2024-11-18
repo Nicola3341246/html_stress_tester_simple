@@ -1,105 +1,137 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Object to define routes and their associated files
-    const routeConfig = {
-      'home': {
-        html: '/pages/elementStressTest/elementStressTest.html',
-        js: '/pages/elementStressTest/elementStressTest.js',
-        css: '/pages/elementStressTest/elementStressTest.css'
-      },
-      'snake': {
-        html: '/pages/snake/snake.html',
-        js: '/pages/snake/snake.js',
-        css: '/pages/snake/snake.css'  // Add the CSS reference here
-      }
-    };
-  
-    // Function to load the HTML content of the page
+window.addEventListener('popstate', RunPageChange)
+document.addEventListener('DOMContentLoaded', RunPageChange);
+
+const routeConfig = {
+    'home':{
+        html: './pages/home/home.html',
+        js:[],
+        css: './pages/home/home.css'
+    },
+    'elementStressTest': {
+        html: './pages/elementStressTest/elementStressTest.html',
+        js: ['./pages/elementStressTest/elementStressTest.js'],
+        css: './pages/elementStressTest/elementStressTest.css',
+        init: 'elementStressTestInitialize'
+    },
+    'snake': {
+      html: '/pages/snake/snake.html',
+      js: ['/pages/snake/snake.js'],
+      css: '/pages/snake/snake.css',
+      init: 'snakeInitialize'
+    },
+    'question': {
+      html: '/pages/question/question.html',
+      js: ['/pages/question/question.js'],
+      css: '/pages/question/question.css',
+      init: 'questionInitialize'
+    }
+  };
+
+function RunPageChange() {
     function loadPage(page) {
-      const contentDiv = document.getElementById('content');
-      const route = routeConfig[page];
-  
-      if (!route) {
+    const contentDiv = document.getElementById('content');
+    const route = routeConfig[page];
+
+    if (!route) {
         contentDiv.innerHTML = '<p>Page not found.</p>';
         return;
-      }
-  
-      // Load HTML content
-      fetch(route.html)
+    }
+
+    fetch(route.html)
         .then(response => {
-          if (response.ok) {
+        if (response.ok) {
             return response.text();
-          } else {
+        } else {
             return Promise.reject('Page not found');
-          }
+        }
         })
         .then(data => {
-          contentDiv.innerHTML = data;
-  
-          // Dynamically load associated JavaScript (if any)
-          if (route.js) {
-            loadScript(route.js);
-          }
-  
-          // Dynamically load associated CSS (if any)
-          if (route.css) {
+        contentDiv.innerHTML = data;
+
+        if (route.js.length > 0) {
+            route.js.forEach(js => {
+            loadScript(js, route.init);
+            });
+        }
+
+        if (route.css) {
             loadCss(route.css);
-          }
-  
-          // Update the browser URL without reloading the page
-          history.pushState({ page: page }, page, `#${page}`);
+        }
+
+        history.pushState({ page: page }, page, `#${page}`);
         })
         .catch(error => {
-          contentDiv.innerHTML = `<p>Error loading page: ${error}</p>`;
+        contentDiv.innerHTML = `<p>Error loading page: ${error}</p>`;
         });
     }
-  
-    // Function to dynamically load the JavaScript file for a specific page
-    function loadScript(scriptUrl) {
-      const script = document.createElement('script');
-      script.src = scriptUrl;
-      script.type = 'text/javascript';
-      script.onload = () => {
+
+    function loadScript(scriptUrl, initFunction) {
+    const existingScript = document.querySelector(`script[src="${scriptUrl}"]`);
+    if (existingScript) {
+        console.log(`${scriptUrl} is already loaded.`);
+        if (initFunction && typeof window[initFunction] === 'function') {
+        console.log(`Calling ${initFunction}() after script is already loaded.`);
+        window[initFunction]();
+        }
+        return;
+    }
+
+    const script = document.createElement('script');
+    script.src = scriptUrl;
+    script.type = 'text/javascript';
+
+    script.onload = () => {
         console.log(`${scriptUrl} loaded successfully`);
-      };
-      script.onerror = () => {
+        if (initFunction && typeof window[initFunction] === 'function') {
+        console.log(`Calling ${initFunction}() after script is loaded.`);
+        window[initFunction]();
+        }
+    };
+
+    script.onerror = () => {
         console.error(`Error loading ${scriptUrl}`);
-      };
-      document.body.appendChild(script);
+    };
+
+    document.body.appendChild(script);
     }
-  
-    // Function to dynamically load the CSS file for a specific page
+
     function loadCss(cssUrl) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = cssUrl;
-      link.onload = () => {
-        console.log(`${cssUrl} loaded successfully`);
-      };
-      link.onerror = () => {
-        console.error(`Error loading ${cssUrl}`);
-      };
-      document.head.appendChild(link);
+    const existingLink = document.querySelector(`link[href="${cssUrl}"]`);
+    if (existingLink) {
+        console.log(`${cssUrl} is already loaded.`);
+        return;
     }
-  
-    // Handle navigation link clicks
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = cssUrl;
+
+    link.onload = () => {
+        console.log(`${cssUrl} loaded successfully`);
+    };
+
+    link.onerror = () => {
+        console.error(`Error loading ${cssUrl}`);
+    };
+
+    document.head.appendChild(link);
+    }
+
     const links = document.querySelectorAll('a[data-route]');
     links.forEach(link => {
-      link.addEventListener('click', (e) => {
+    link.addEventListener('click', (e) => {
         e.preventDefault();
         const page = link.getAttribute('data-route');
         loadPage(page);
-      });
     });
-  
-    // Load the initial page based on the URL hash or default to 'home'
+    });
+
     const initialPage = window.location.hash.slice(1) || 'home';
     loadPage(initialPage);
-  
-    // Listen for back/forward browser navigation
+
     window.addEventListener('popstate', (e) => {
-      if (e.state && e.state.page) {
+    if (e.state && e.state.page) {
         loadPage(e.state.page);
-      }
+    }
     });
-  });
-  
+};
