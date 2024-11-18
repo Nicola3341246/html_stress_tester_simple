@@ -193,7 +193,7 @@ p{
     align-items: center;
 }
 
-#NumberInput{
+.DefaultNumberInput{
     border: none;
     border-bottom: var(--accent-color) 0.15rem solid;
     color: var(--text-colour);
@@ -214,7 +214,7 @@ p{
     align-items: center;
 }
 
-.inputBtn{
+.DefaultButton{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -227,7 +227,7 @@ p{
     text-align: center;
 }
 
-.inputBtn:hover{
+.DefaultButton:hover{
     transition: 0.25s;
     transform: scale(1.1);
     cursor: pointer;
