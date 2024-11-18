@@ -24,7 +24,7 @@
     --text-colour: white;
 }
 
-* {
+*, *::before, *::after, text {
     transition: var(--default-transition-time);
 }
 
