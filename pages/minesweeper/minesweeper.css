@@ -1,0 +1,214 @@
+
+:root{
+.minesweeper-number-1 { color: #6666ff; }
+.minesweeper-number-2 { color: #44ff44; }
+.minesweeper-number-3 { color: #ff5500; }
+.minesweeper-number-4 { color: #5555ff; }
+.minesweeper-number-5 { color: #ff4444; }
+.minesweeper-number-6 { color: #00ffff; }
+.minesweeper-number-7 { color: #ffffff; }
+.minesweeper-number-8 { color: #aaaaaa; }
+}
+
+.minesweeper-controls {
+    margin: 20px 0;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.minesweeper-controls button {
+    background: #5555ff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.minesweeper-controls button:hover {
+    background: #4444ff;
+}
+
+#minesweeper-mine-count, #minesweeper-game-status {
+    color: white;
+    padding: 8px 16px;
+    background: #0000004d;
+    border-radius: 4px;
+}
+
+.minesweeper-grid {
+    display: inline-grid;
+    gap: 1px;
+    background: #222;
+    padding: 1px;
+    border-radius: 4px;
+}
+
+.minesweeper-cell {
+    width: 40px;
+    height: 40px;
+    background: #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 2px;
+}
+
+.minesweeper-cell.minesweeper-revealed {
+    background: #000000;
+}
+
+.minesweeper-cell.minesweeper-mine {
+    background: #ff5500;
+}
+
+.minesweeper-cell.minesweeper-flagged {
+    position: relative;
+}
+
+.minesweeper-cell.minesweeper-flagged::after {
+    content: "🚩";
+    position: absolute;
+    font-size: 20px;
+}
+
+.minesweeper-number-1 { color: #6666ff; }
+.minesweeper-number-2 { color: #44ff44; }
+.minesweeper-number-3 { color: #ff5500; }
+.minesweeper-number-4 { color: #5555ff; }
+.minesweeper-number-5 { color: #ff4444; }
+.minesweeper-number-6 { color: #00ffff; }
+.minesweeper-number-7 { color: #ffffff; }
+.minesweeper-number-8 { color: #aaaaaa; }
+
+.grid-container {
+    display: inline-grid;
+    gap: 1px;
+    background-color: var(--background-container-colour);
+    padding: 1px;
+    box-shadow: 0px 2px 10px var(--box-shadow-dark);
+}
+
+.minesweeper-cell {
+    width: 40px;
+    height: 40px;
+    background-color: #999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Win Screen */
+.winScreen {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    width: 100%;
+    background-color: rgb(0, 0, 0, 0.75);
+    height: 30%;
+    z-index: 9999;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.winText {
+    font-size: 5vw;
+}
+
+.winDetails {
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    gap: 1%;
+    font-size: 1vw;
+    width: 60%;
+}
+
+/* Game Controls */
+.MinesContainer {
+    background-color: var(--background-container-colour);
+    box-shadow: 0px 2px 10px var(--box-shadow-dark);
+    margin: 0 1rem;
+    width: 9rem;
+    color: var(--text-colour);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.resetBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--accent-color);
+    color: var(--button-text-colour);
+    border: none;
+    height: 2rem;
+    min-width: 5rem;
+    padding: 3%;
+    text-align: center;
+}
+
+.resetBtn:hover {
+    transition: 0.25s;
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: var(--accent-color-hover);
+}
+
+/* Game Container */
+.MiniGame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.Container {
+    height: 93%;
+    width: 92%;
+    padding: 2% 4%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.Container::before {
+    content: "";
+    background-color: var(--alt-background-color);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50vw;
+    height: 40vh;
+    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+    z-index: -1;
+}
+
+.Container::after {
+    content: "";
+    background-color: var(--alt-background-color);
+    position: absolute;
+    bottom: 0%;
+    right: -5%;
+    width: 70vw;
+    height: 60vh;
+    clip-path: polygon(100% 0, 100% 11%, 10% 100%, 0% 100%);
+    z-index: -1;
+}

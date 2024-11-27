@@ -24,6 +24,12 @@ const routeConfig = {
       js: ['/pages/question/question.js'],
       css: '/pages/question/question.css',
       init: 'questionInitialize'
+    },
+    'minesweeper': {
+        html: '/pages/minesweeper/minesweeper.html',
+        js: ['/pages/minesweeper/minesweeper.js'],
+        css: '/pages/minesweeper/minesweeper.css',
+        init: 'initGame'
     }
   };
 
