@@ -107,7 +107,6 @@
     user-select: none;
 }
 
-/* Win Screen */
 .winScreen {
     position: absolute;
     top: 0;
@@ -137,7 +136,6 @@
     width: 60%;
 }
 
-/* Game Controls */
 .MinesContainer {
     background-color: var(--background-container-colour);
     box-shadow: 0px 2px 10px var(--box-shadow-dark);
@@ -169,7 +167,6 @@
     background-color: var(--accent-color-hover);
 }
 
-/* Game Container */
 .MiniGame {
     display: flex;
     flex-direction: column;

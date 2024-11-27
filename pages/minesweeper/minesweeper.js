@@ -1,6 +1,5 @@
-// script.js
-const GRID_SIZE = 30;
-const MINE_COUNT = 200;
+const GRID_SIZE = 40;
+const MINE_COUNT = 400;
 let grid = [];
 let revealed = [];
 let flagged = [];
@@ -18,7 +17,6 @@ function initGame() {
     remainingMines = MINE_COUNT;
     isFirstClick = true;
     
-    // Initialize empty grid
     for (let i = 0; i < GRID_SIZE; i++) {
         grid[i] = [];
         revealed[i] = [];
@@ -125,10 +123,8 @@ function updateDisplay() {
 }
 
 function revealAdjacentCells(x, y) {
-    // If the cell isn't revealed or has no adjacent mines, return
     if (!revealed[x][y] || grid[x][y] <= 0) return;
     
-    // Count adjacent flags
     let adjacentFlags = 0;
     for (let i = -1; i <= 1; i++) {
         for (let j = -1; j <= 1; j++) {
@@ -140,7 +136,6 @@ function revealAdjacentCells(x, y) {
         }
     }
     
-    // If adjacent flags match the number, reveal all unflagged adjacent cells
     if (adjacentFlags === grid[x][y]) {
         for (let i = -1; i <= 1; i++) {
             for (let j = -1; j <= 1; j++) {
@@ -148,13 +143,11 @@ function revealAdjacentCells(x, y) {
                 const newY = y + j;
                 if (newX >= 0 && newX < GRID_SIZE && newY >= 0 && newY < GRID_SIZE) {
                     if (!flagged[newX][newY] && !revealed[newX][newY]) {
-                        // If there's a mine and it wasn't flagged, game over
                         if (grid[newX][newY] === -1) {
                             gameOver = true;
                             revealAll();
                             return;
                         }
-                        // Otherwise reveal the cell and its chain reaction if it's empty
                         revealCell(newX, newY);
                     }
                 }
@@ -171,7 +164,6 @@ function handleClick(event) {
     const x = parseInt(event.target.dataset.x);
     const y = parseInt(event.target.dataset.y);
 
-    // If the cell is already revealed, try to chord
     if (revealed[x][y]) {
         revealAdjacentCells(x, y);
         return;
@@ -271,7 +263,7 @@ function updateMineCount() {
 function renderWinScreen() {
     const winScreen = document.querySelector(".winScreen");
     const winDetails = winScreen.querySelector(".winDetails");
-    winDetails.innerHTML = ''; // Clear previous details
+    winDetails.innerHTML = ''; 
 
     const timerField = document.createElement("div");
     const flagsField = document.createElement("div");
