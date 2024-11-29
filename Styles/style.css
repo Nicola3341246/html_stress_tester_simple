@@ -8,8 +8,10 @@
     --accent-color-hover: #3555b4;
     --text-colour: #000;
     --button-text-colour: #fff;
-    --alt-background-color: rgb(179, 178, 178);
+    --alt-background-color: #b3b2b2;
+    
     --default-transition-time: 1s;
+    --hover-transition-time: 0.5s;
 }
 
 [data-theme="dark"]{
@@ -188,6 +190,7 @@ p{
     box-shadow: 0px 2px 60px var(--box-shadow);
 
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -213,6 +216,10 @@ p{
     min-width: 5rem;
     padding: 3%;
     text-align: center;
+}
+
+.FooterLink{
+    color: var(--text-colour);
 }
 
 .inputBtn:hover{
