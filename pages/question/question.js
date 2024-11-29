@@ -1,8 +1,10 @@
 class Question {
+    noPressCounter = 0;
+    noContainer = document.getElementById('question-test');
 
     moveNoButton() {
         const container = document.querySelector('.Container');
-        const noButton = document.getElementById('noButton');
+        const noButton = document.getElementById('question-noButton');
         
         const containerRect = container.getBoundingClientRect();
         const maxX = containerRect.width - noButton.offsetWidth;
@@ -14,10 +16,13 @@ class Question {
         noButton.style.position = 'absolute';
         noButton.style.left = `${randomX}px`;
         noButton.style.top = `${randomY}px`;
+
+        this.noPressCounter++;
+        this.noContainer.innerHTML = this.noPressCounter;
     }
     
     showCongratulations() {
-        const area = document.querySelector('.Area');
+        const area = document.querySelector('.question-Area');
         
         area.innerHTML = '';
         
