@@ -191,16 +191,6 @@ p{
     align-items: center;
 }
 
-#NumberInput{
-    border: none;
-    border-bottom: var(--accent-color) 0.15rem solid;
-    color: var(--text-colour);
-    background-color: var(--background-colour);
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    height: 1.75rem;
-}
-
 .StopWatchContainer{
     background-color: var(--background-container-colour);
     box-shadow: 0px 2px 10px var(--box-shadow-dark);

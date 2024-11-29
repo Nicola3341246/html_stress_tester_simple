@@ -34,3 +34,13 @@
     transform: scale(1.1);
     filter: brightness(0.9);
 }
+
+.elementStressTest-NumberInput{
+    border: none;
+    border-bottom: var(--accent-color) 0.15rem solid;
+    color: var(--text-colour);
+    background-color: var(--background-colour);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    height: 1.75rem;
+}

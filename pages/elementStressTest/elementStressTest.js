@@ -1,11 +1,22 @@
-let testItemContainer = document.getElementById("testItemContainer");
-let numberInput = document.getElementById("NumberInput");
-let timeDisplay = document.getElementById("StopWatchDisplay");
-var form = document.getElementById("inputRow");
+const ids = {
+    testItemContainer: "elementStressTest-testItemContainer",
+    numberInput: "elementStressTest-numberInput",
+    timeDisplay: "elementStressTest-stopWatchDisplay",
+    form: "elementStressTest-inputRow",
+}
+let testItemContainer = document.getElementById(ids.testItemContainer);
+let numberInput = document.getElementById(ids.numberInput);
+let timeDisplay = document.getElementById(ids.timeDisplay);
+var form = document.getElementById(ids.form);
 
 function LoadDivs() {
     let startTime = new Date();
     let htmlContent = '';
+
+    if (numberInput.value == '' || numberInput.value == 0) {
+        Clear();
+        return;
+    }
 
     for (let index = 1; index <= numberInput.value; index++) {
         htmlContent += `<p class="TestContainer">
@@ -26,10 +37,10 @@ function handleForm(event) { event.preventDefault(); }
 
 function elementStressTestInitialize(){
     console.log("Initialize stress test")
-    testItemContainer = document.getElementById("testItemContainer");
-    numberInput = document.getElementById("NumberInput");
-    timeDisplay = document.getElementById("StopWatchDisplay");
-    form = document.getElementById("inputRow");
+    testItemContainer = document.getElementById(ids.testItemContainer);
+    numberInput = document.getElementById(ids.numberInput);
+    timeDisplay = document.getElementById(ids.timeDisplay);
+    form = document.getElementById(ids.form);
     
     form.addEventListener('submit', handleForm);
 }
